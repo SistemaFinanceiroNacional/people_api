@@ -137,22 +137,67 @@ class Operations{
 
         while(run)
             {
-                Console.WriteLine("O que gostaria de fazer:\nListar dados de uma pessoa juridica: 1\nRegistrar uma nova pessoa juridica: 2\nRegistrar um novo funionario: 3\nSair: 4");
+                Console.WriteLine("O que gostaria de fazer:\nListar dados de uma empresa: 1\nRegistrar uma nova empresa: 2\nRegistrar um novo funionario: 3\nSair: 4");
                 int choice = int.Parse(Console.ReadLine());
 
                 switch(choice)
                 {
                     case 1:
-
+                        Console.WriteLine("Digite o CNPJ da empresa:\n");
+                        Cnpj cnpj = Cnpj.makeCnpj(Console.ReadLine());
+                        Empresa foundedCommpany = Empresa.searchEmpresa(cnpj, empresas);
+                        
+                        if(foundedCommpany != null)
+                        {
+                            foundedCommpany.ShowInfo();
+                        }else
+                        {
+                            Console.WriteLine("Empresa não encontrada!\n");
+                        }
 
                         break;
                     case 2:
+                        Console.WriteLine("Digite o nome da empresa");
+                        string nome = Console.ReadLine();
+
+                        Console.WriteLine("Digite o CNPJ da empresa");
+                        Cnpj newCnpj = Cnpj.makeCnpj(Console.ReadLine());
+
+                        Console.WriteLine("Digite o CPF do dono da empresa");
+                        Cpf cpf = Cpf.makeCpf(Console.ReadLine());
+                        Person dono = Person.searchPerson(personList,cpf);
+                        if(dono == null)
+                        {
+                            Console.WriteLine("A pessoa não está registrada no sistema\n");
+                            break;
+                        }
+                        empresas.Add(new Empresa(nome, newCnpj, dono, new List<Person>()));
+                        Console.WriteLine("Empresa criada com sucesso!\n");
 
 
                         break;
                     case 3:
+                        Console.WriteLine("Digite o CNPJ da empresa:\n");
+                        Cnpj cnpj1 = Cnpj.makeCnpj(Console.ReadLine());
+                        Empresa empresa = Empresa.searchEmpresa(cnpj1, empresas);
+                        if(empresa == null)
+                        {
+                            Console.WriteLine("Empresa não encontrada!\n");
+                            break;
+                        }
 
-                        
+                        Console.WriteLine("Digite o CPF do novo funcionario:\n");
+                        Cpf cpf1 = Cpf.makeCpf(Console.ReadLine());
+                        Person person = Person.searchPerson(personList, cpf1);
+                        if(person == null)
+                        {
+                            Console.WriteLine("Pessoa não encontrada!\n");
+                            break;
+                        }
+
+                        empresa.NewEmployee(person);
+                        Console.WriteLine("Funcionario cadastrado com sucesso!\n");
+                                               
                         break;
 
                     case 4:

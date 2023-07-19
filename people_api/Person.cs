@@ -7,7 +7,7 @@ using System.Collections.Generic;
         private string name {get; set; }
         private Cpf cpf;
         private DateTime birthday {get; set; }
-        private JobSituation jobsituation;
+        private JobSituation jobsituation {get; set; }
 
         public Person(string name, Cpf cpf, DateTime  birthday, JobSituation jobSituation)
         {
@@ -35,6 +35,11 @@ using System.Collections.Generic;
             }
         }
         return null;
+        }
+        
+        public void ChangeJobSituation(Person empregado, Empresa empresa)
+        {
+            empregado.jobsituation = new Empregado(empresa);
         }
 
     }
