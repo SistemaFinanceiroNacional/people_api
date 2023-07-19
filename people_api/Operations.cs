@@ -87,6 +87,7 @@ class Operations{
                             }else
                                 {
                                     Console.WriteLine("Empresa não encontrada");
+                                    break;
                                 }
                         }else if(situation.Equals(2))
                         {
@@ -100,6 +101,7 @@ class Operations{
                             }else
                                 {
                                     Console.WriteLine("Empresa não encontrada");
+                                    break;
                                 }
                         }else if(situation.Equals(3))
                             {
