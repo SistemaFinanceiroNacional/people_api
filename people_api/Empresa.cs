@@ -40,7 +40,7 @@ public class Empresa
     public void NewEmployee(Person empregado)
     {
         empregados.Add(empregado);
-        empregado.ChangeJobSituation(empregado, this);
+        empregado.Trabalha(this);
     }
 
 

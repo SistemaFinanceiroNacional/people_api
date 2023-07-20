@@ -37,9 +37,9 @@ using System.Collections.Generic;
         return null;
         }
         
-        public void ChangeJobSituation(Person empregado, Empresa empresa)
+        public void Trabalha(Empresa empresa)
         {
-            empregado.jobsituation = new Empregado(empresa);
+            this.jobsituation = new Empregado(empresa);
         }
 
     }
