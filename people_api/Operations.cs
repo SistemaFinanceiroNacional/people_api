@@ -137,7 +137,7 @@ class Operations{
 
         while(run)
             {
-                Console.WriteLine("O que gostaria de fazer:\nListar dados de uma empresa: 1\nRegistrar uma nova empresa: 2\nRegistrar um novo funionario: 3\nSair: 4");
+                Console.WriteLine("O que gostaria de fazer:\nListar dados de uma empresa: 1\nRegistrar uma nova empresa: 2\nRegistrar um novo funcionario: 3\nSair: 4");
                 int choice = int.Parse(Console.ReadLine());
 
                 switch(choice)
