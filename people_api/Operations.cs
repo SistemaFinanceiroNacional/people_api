@@ -137,7 +137,7 @@ class Operations{
 
         while(run)
             {
-                Console.WriteLine("O que gostaria de fazer:\nListar dados de uma empresa: 1\nRegistrar uma nova empresa: 2\nRegistrar um novo funcionario: 3\nSair: 4");
+                Console.WriteLine("O que gostaria de fazer:\nListar dados de uma empresa: 1\nRegistrar uma nova empresa: 2\nRegistrar um novo funcionário: 3\nSair: 4");
                 int choice = int.Parse(Console.ReadLine());
 
                 switch(choice)
@@ -186,7 +186,7 @@ class Operations{
                             break;
                         }
 
-                        Console.WriteLine("Digite o CPF do novo funcionario:\n");
+                        Console.WriteLine("Digite o CPF do novo funcionário:\n");
                         Cpf cpf1 = Cpf.makeCpf(Console.ReadLine());
                         Person person = Person.searchPerson(personList, cpf1);
                         if(person == null)
@@ -196,7 +196,7 @@ class Operations{
                         }
 
                         empresa.NewEmployee(person);
-                        Console.WriteLine("Funcionario cadastrado com sucesso!\n");
+                        Console.WriteLine("Funcionário cadastrado com sucesso!\n");
                                                
                         break;
 
