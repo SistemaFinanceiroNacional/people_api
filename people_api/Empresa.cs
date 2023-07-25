@@ -5,7 +5,7 @@ public class Empresa
 {
     private string nome { get; set; }
     private List<Person> empregados { get; set; }
-    private Cnpj cnpj;
+    public readonly Cnpj cnpj;
     private Person dono { get; set; }
     
 
@@ -16,18 +16,6 @@ public class Empresa
         this.dono = dono;
         this.empregados = empregados;
 
-    }
-
-    public static Empresa searchEmpresa(Cnpj cnpj,List<Empresa> empresas)
-    {
-        foreach (Empresa empresa in empresas)
-        {
-            if (empresa.cnpj.Equals(cnpj))
-            {
-                return empresa;
-            }
-        }
-        return null;
     }
 
     public void ShowInfo()

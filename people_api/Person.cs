@@ -5,7 +5,7 @@ using System.Collections.Generic;
     public class Person {
 
         private string name {get; set; }
-        private Cpf cpf;
+        public readonly Cpf cpf;
         private DateTime birthday {get; set; }
         private JobSituation jobsituation {get; set; }
 
@@ -25,19 +25,7 @@ using System.Collections.Generic;
         Console.WriteLine("Situação empregaticia: " + this.jobsituation.toString());
         }
 
-        static public Person searchPerson(List<Person> personList, Cpf cpf)
-        {
-        foreach (Person person in personList)
-        {
-            if (person.cpf.Equals(cpf))
-            {
-                return person;
-            }
-        }
-        return null;
-        }
-        
-        public void Trabalha(Empresa empresa)
+    public void Trabalha(Empresa empresa)
         {
             this.jobsituation = new Empregado(empresa);
         }
