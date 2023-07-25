@@ -2,35 +2,45 @@ using System;
 using System.Collections.Generic;
 
 class Operations{
-    static List<Person> personList = new List<Person>();
-    static List<Empresa> empresas = new List<Empresa>();
+
+    IPersonRepository personRepository;
+    ICompanyRepository companyRepository;
     static void Main(string[] args)
     {
+        Operations mainMenu = new Operations();
+        mainMenu.FirstMenu();
+             
+    }
 
+    void FirstMenu()
+    {
         Console.WriteLine("Que tipo de operação você gostaria de fazer:\nPessoa física: 1\nPessoa Juridica: 2\nSair: 3");
         int option = int.Parse(Console.ReadLine());
 
-        if(option == 1){
+        if (option == 1)
+        {
 
-           MenuOne(); 
-         
-        }else if(option == 2){
+            MenuOne();
+
+        }
+        else if (option == 2)
+        {
 
             MenuTwo();
 
-        }else if(option == 3)
+        }
+        else if (option == 3)
         {
             Console.WriteLine("Obrigado e volte sempre!");
 
-        }else
+        }
+        else
         {
             Console.WriteLine("Opção invalida");
         }
-         
-            
     }
 
-    static void MenuOne()
+    void MenuOne()
     {
         bool run = true;
 
@@ -44,7 +54,7 @@ class Operations{
                     case 1:
                         Console.WriteLine("Digite o Cpf da pessoa:");
                         Cpf personCpf = Cpf.makeCpf(Console.ReadLine());
-                        Person wantedPerson = Person.searchPerson(personList, personCpf);
+                        Person wantedPerson = personRepository.SearchPerson(personCpf);
 
                         if (wantedPerson != null)
                         {
@@ -79,7 +89,7 @@ class Operations{
                         {
                             Console.WriteLine("Qual o Cnpj da empresa que você trabalha:\n");
                             Cnpj cnpj = Cnpj.makeCnpj(Console.ReadLine());
-                            Empresa empresa = Empresa.searchEmpresa(cnpj, empresas);
+                            Empresa empresa = companyRepository.SearchCompany(cnpj);
                             
                             if(empresa != null)
                             {
@@ -93,7 +103,7 @@ class Operations{
                         {
                             Console.WriteLine("Qual o Cnpj da sua empresa:\n");
                             Cnpj cnpj = Cnpj.makeCnpj(Console.ReadLine());
-                            Empresa empresa = Empresa.searchEmpresa(cnpj, empresas);
+                            Empresa empresa = companyRepository.SearchCompany(cnpj);
 
                             if (empresa != null)
                             {
@@ -112,7 +122,7 @@ class Operations{
                                 break;
                              }
 
-                        personList.Add(new Person(name, cpf, new DateTime(year, month, day), jobSituation));
+                        personRepository.AddPerson((new Person(name, cpf, new DateTime(year, month, day), jobSituation)));
                         Console.WriteLine("Pessoa adicionada com sucesso!");
 
                         break;
@@ -131,7 +141,7 @@ class Operations{
 
     }
 
-    static void MenuTwo()
+    void MenuTwo()
     {
         bool run = true;
 
@@ -145,7 +155,7 @@ class Operations{
                     case 1:
                         Console.WriteLine("Digite o CNPJ da empresa:\n");
                         Cnpj cnpj = Cnpj.makeCnpj(Console.ReadLine());
-                        Empresa foundedCommpany = Empresa.searchEmpresa(cnpj, empresas);
+                        Empresa foundedCommpany = companyRepository.SearchCompany(cnpj);
                         
                         if(foundedCommpany != null)
                         {
@@ -165,13 +175,13 @@ class Operations{
 
                         Console.WriteLine("Digite o CPF do dono da empresa");
                         Cpf cpf = Cpf.makeCpf(Console.ReadLine());
-                        Person dono = Person.searchPerson(personList,cpf);
+                        Person dono = personRepository.SearchPerson(cpf);
                         if(dono == null)
                         {
                             Console.WriteLine("A pessoa não está registrada no sistema\n");
                             break;
                         }
-                        empresas.Add(new Empresa(nome, newCnpj, dono, new List<Person>()));
+                        companyRepository.AddCompany((new Empresa(nome, newCnpj, dono, new List<Person>())));
                         Console.WriteLine("Empresa criada com sucesso!\n");
 
 
@@ -179,7 +189,7 @@ class Operations{
                     case 3:
                         Console.WriteLine("Digite o CNPJ da empresa:\n");
                         Cnpj cnpj1 = Cnpj.makeCnpj(Console.ReadLine());
-                        Empresa empresa = Empresa.searchEmpresa(cnpj1, empresas);
+                        Empresa empresa = companyRepository.SearchCompany(cnpj1);
                         if(empresa == null)
                         {
                             Console.WriteLine("Empresa não encontrada!\n");
@@ -188,7 +198,7 @@ class Operations{
 
                         Console.WriteLine("Digite o CPF do novo funcionário:\n");
                         Cpf cpf1 = Cpf.makeCpf(Console.ReadLine());
-                        Person person = Person.searchPerson(personList, cpf1);
+                        Person person = personRepository.SearchPerson(cpf1);
                         if(person == null)
                         {
                             Console.WriteLine("Pessoa não encontrada!\n");
