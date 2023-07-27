@@ -9,6 +9,22 @@ public class Cpf
         this.cpf = cpf;
     }
 
+    public override bool Equals(Object other)
+    {
+        if(other is null)
+        {
+            return false;
+        }
+        
+        Cpf otherCpf = (Cpf)other;
+        if(otherCpf is null)
+        {
+            return false;
+        }
+       
+        return otherCpf.cpf == this.cpf;
+    }
+
     public static Cpf makeCpf(string possibleCpf)
     {
         if("".Equals(possibleCpf))

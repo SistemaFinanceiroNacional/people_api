@@ -8,6 +8,22 @@ public class Cnpj
         this.cnpj = cnpj;
     }
 
+    public override bool Equals(Object obj)
+    {
+        if (obj is null)
+        {
+            return false;
+        }
+
+        Cnpj objCnpj = (Cnpj)obj;
+        if (objCnpj is null)
+        {
+            return false;
+        }
+
+        return objCnpj.cnpj == this.cnpj;
+    }
+
     public static Cnpj makeCnpj(string possibleCnpj)
     {
         if("".Equals(possibleCnpj))

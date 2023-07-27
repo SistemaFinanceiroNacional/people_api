@@ -3,11 +3,17 @@ using System.Collections.Generic;
 
 class Operations{
 
-    IPersonRepository personRepository;
-    ICompanyRepository companyRepository;
+    private IPersonRepository personRepository;
+    private ICompanyRepository companyRepository;
+
+    public Operations(IPersonRepository personRepository, ICompanyRepository companyRepository)
+    {
+        this.personRepository = personRepository;
+        this.companyRepository = companyRepository;
+    }
     static void Main(string[] args)
     {
-        Operations mainMenu = new Operations();
+        Operations mainMenu = new Operations(new PersonRepository(), new CompanyRepository());
         mainMenu.FirstMenu();
              
     }
